@@ -1,14 +1,11 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 
 import "./styles.css";
-var userName = "Parth"
+var userName = "Emoji Interpreter React App";
 
 export default function App() {
-
-  var [ likeCounter, setLikeCounter] = useState(0);
-  var [ userInput, setUserInput] = useState("");
-  var [ emojiMeaning, setEmojiMeaning] = useState("")
-  var [ emojiMeaning2, setEmojiMeaning2] = useState("")
+  var [emojiMeaning, setEmojiMeaning] = useState("");
+  var [emojiMeaning2, setEmojiMeaning2] = useState("");
   var emojis = {
     "😀": "Grinning Face",
     "😃": "Grinning Face with Big Eyes",
@@ -23,44 +20,33 @@ export default function App() {
     "😉": "Winking Face",
     "😊": "Smiling Face with Smiling Eyes",
     "😇": "Smiling Face with Halo",
-    "🥰": "Smiling Face with Hearts",
-  }
-  function likeClickHandler() {
-    likeCounter += 1
-    setLikeCounter(likeCounter)
-  }
-  function inputChangeHandler(event) {
-    setUserInput(event.target.value)
-  }
+    "🥰": "Smiling Face with Hearts"
+  };
   function emojiMeaningFinder(event) {
-    setEmojiMeaning(emojis[event.target.value])
+    setEmojiMeaning(emojis[event.target.value]);
   }
   function emojiClickHandler(item) {
-    setEmojiMeaning2(emojis[item])
+    setEmojiMeaning2(emojis[item]);
   }
 
   return (
-    <div className="App"> 
-      <h1 style={{color: "blue"}}>Welcome {userName}</h1>
-      <button onClick={likeClickHandler}>Like</button>
-      {likeCounter}
-      <div>
-        <input onChange={inputChangeHandler}></input>
-        <span> Welcome {userInput}</span>
-      </div>
+    <div className="App">
+      <h1 style={{ color: "blue" }}>{userName}</h1>
+      <h2>Enter your emoji</h2>
       <div className="emojiMeaning">
         <input onChange={emojiMeaningFinder}></input>
-        {emojiMeaning}
+        <div>{emojiMeaning}</div>
       </div>
-      <div>
-        {
-          Object.keys(emojis).map((item,index) => {
-           return (<span key={item} 
-            onClick={()=>emojiClickHandler(item)}>{item}</span>)
-          })
-        }
-        <div>{emojiMeaning2}</div>
+      <div id="emojis">
+        {Object.keys(emojis).map((item, index) => {
+          return (
+            <span key={item} onClick={() => emojiClickHandler(item)}>
+              {item}
+            </span>
+          );
+        })}
       </div>
+      <div id="result">{emojiMeaning2}</div>
     </div>
   );
 }
