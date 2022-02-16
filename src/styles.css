@@ -5,3 +5,18 @@
 body {
   background-color: aquamarine;
 }
+input {
+  padding: 1em;
+  min-width: 70%;
+}
+span {
+  padding: 0.3rem;
+  cursor: pointer;
+}
+#result {
+  font-size: 2rem;
+  padding: 1rem;
+}
+#emojis {
+  padding: 2rem;
+}
